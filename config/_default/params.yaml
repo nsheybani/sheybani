@@ -13,19 +13,22 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   identity:
     # Site name - shown in navbar, footer, copyright, and browser title by default
-    name: "Your Name"
+    name: "Navid Sheybani"
     # Legal entity for copyright notices (defaults to name if not set)
-    organization: ""
+    organization: "UChicago Neuroscience Institute"
     # Schema.org type for structured data
-    type: person # person | organization | local_business
+    type: Researcher # person | organization | local_business
     # Short tagline displayed on your site
-    tagline: ""
+    tagline: "Undergraduate Researcher"
     # Site meta description for search engines and social sharing
     description: "The highly-customizable Hugo Academic theme powered by HugoBlox
       Kit. Easily create your personal academic website."
     # Social accounts (used for meta tags like Twitter Cards)
     social:
-      twitter: "GoOwnable" # Twitter/X handle for Twitter Cards (without @)
+      icon: brands/github
+      link: https://github.com/nsheybani
+      icon: brands/linkedin
+      link: https://linkedin.com/
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
@@ -37,10 +40,10 @@ hugoblox:
     # Theme pack: name from data/themes/ or { light: "x", dark: "y" } for mix-and-match
     pack: "default"
     # Optional: Override theme pack colors
-    colors:
-      primary: "" # Tailwind palette name or hex (e.g., "indigo" or "#6366f1")
-      secondary: ""
-      neutral: "" # Affects gray utilities (text-gray-*, bg-gray-*)
+   theme:
+    primary: "#E6E6FA"   # Lavender
+    secondary: "#ACE1AF" # Celadon
+    neutral: "slate"     # Provides the light grey base
     # Optional: Mode-specific color overrides
     colors_light: {}
     colors_dark: {}
