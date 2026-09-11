@@ -25,7 +25,7 @@
             padding: 0;
             line-height: 1.7;
             overflow-x: hidden;
-            zoom: 80%; /* Scales the entire homepage to look like 80% */
+            zoom: 80%;
         }
 
         .eeg-bg {
@@ -151,11 +151,11 @@
             font-family: 'Libertinus Mono', monospace, serif;
         }
 
-        /* Intro statement font reduced by 20% */
+        /* Original larger size restored */
         .intro-statement {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
-            font-size: 1.28rem; 
+            font-size: 1.6rem; 
             font-weight: bold;
             line-height: 1.5;
             margin-bottom: 40px;
@@ -277,7 +277,6 @@
             font-family: 'Libertinus Mono', monospace, serif;
         }
 
-        /* Clean single-line layout for CV items to fix line-break wrapping issues */
         .cv-item {
             margin-bottom: 20px;
             display: flex;
@@ -397,7 +396,7 @@
         }
     </style>
 </head>
-<body onclick="triggerBetaWaves()">
+<body>
 
     <div class="eeg-bg"></div>
 
@@ -560,7 +559,7 @@
                 <a href="mailto:sheybani@uchicago.edu"><img src="image_5f7b87.jpg" alt="Email"></a>
                 <a href="https://neuroscience.uchicago.edu" target="_blank"><img src="uchicago-seal.jpg" alt="UChicago SEAL"></a>
                 <a href="https://arxiv.org/a/0009-0000-7181-259X" target="_blank"><img src="image_5f7b67.png" alt="arXiv"></a>
-                <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=12983768" target="_blank"><img src="68747470733a2f2f7374617469632e7373726e2e636f6d2f6366696e636c756465732f696d672f66617669636f6e2f736166617669636f6e2f736166617669636f6e2e737667.png" alt="SSRN"></a>
+                <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=12983768" target="_blank"><img src="68747470733a2f2f7374617469632e7373726e2e636f6d2f6366696e636c756465732f696d672f66617669636f6e2f736166617669636f6e2e737667.png" alt="SSRN"></a>
             </div>
             
             1101 East 56th Street • Chicago, Illinois 60637[cite: 1]<br>
@@ -570,11 +569,23 @@
     </div>
 
     <script>
-        function triggerBetaWaves() {
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
             const eegBg = document.querySelector('.eeg-bg');
-            eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='%234ade80' stroke-width='1'/%3E%3C/svg%3E\")";
-            eegBg.style.animationDuration = "4s";
-        }
+            
+            if (link) {
+                // Hyperlink clicked: full beta waves transformation
+                eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='%234ade80' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                eegBg.style.animationDuration = "4s";
+            } else {
+                // Non-link click: split-second pale code green flash
+                eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(74, 222, 128, 0.4)' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                setTimeout(() => {
+                    eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                }, 300);
+            }
+        });
     </script>
 </body>
 </html>
+```[cite: 1, 2]
