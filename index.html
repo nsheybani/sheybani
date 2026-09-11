@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navid Sheybani | University of Chicago</title>
-    <!-- Favicon using the green brain logo image -->
-    <link rel="icon" href="shawn-day-ii6BOPjAtVY-unsplash.jpg">
+    <title>ᓭ⍑ᒷ||ʖᔑリ╎</title>
+    <!-- Favicon using the specified green brain logo image -->
+    <link rel="icon" href="image_6d8be8.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap');
 
@@ -308,14 +308,12 @@
             margin-left: 20px;
         }
 
-        /* Style A: Whiter and bolder letters for requested items */
         .cv-style-a {
             color: var(--hover-color) !important;
             font-weight: bold !important;
             font-size: 1.15rem !important;
         }
 
-        /* Style B: Standardized size matching Style A, keeping accent/gray color */
         .cv-style-b {
             color: var(--accent-color) !important;
             font-weight: normal !important;
@@ -398,6 +396,41 @@
             }
         }
     </style>
+    <script>
+        // Decipher title effect: starts as rapidly changing Standard Galactic Alphabet (Minecraft enchantment table)
+        // Then, after 1 second, it locks in letter by letter to the final string.
+        document.addEventListener("DOMContentLoaded", () => {
+            const finalTitle = "sheybani";
+            const sgaChars = "ᔑʖᓵ↸ᒷ⎓⊣⍑╎⋮ꖌꖎᒲリ𝙹!¡ᑑ∷ᓭℸ⚍⍊∴/||⨅";
+            let iteration = 0;
+            let deciphering = false;
+
+            const scrambleInterval = setInterval(() => {
+                let tempTitle = "";
+                for (let i = 0; i < finalTitle.length; i++) {
+                    if (!deciphering || i >= iteration) {
+                        tempTitle += sgaChars[Math.floor(Math.random() * sgaChars.length)];
+                    } else {
+                        tempTitle += finalTitle[i];
+                    }
+                }
+                document.title = tempTitle;
+
+                if (deciphering) {
+                    iteration += 1 / 3; // Controls speed of the locking-in animation
+                    if (iteration >= finalTitle.length) {
+                        clearInterval(scrambleInterval);
+                        document.title = finalTitle;
+                    }
+                }
+            }, 60);
+
+            // Wait 1 second before starting to lock in the actual text
+            setTimeout(() => {
+                deciphering = true;
+            }, 1000);
+        });
+    </script>
 </head>
 <body>
 
