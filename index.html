@@ -152,6 +152,7 @@
             font-family: 'Libertinus Mono', monospace, serif;
         }
 
+        /* Intro paragraph pops out on hover */
         .intro-statement {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
@@ -160,11 +161,23 @@
             line-height: 1.5;
             margin-bottom: 40px;
             text-align: left;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            cursor: default;
+        }
+
+        .intro-statement:hover {
+            transform: scale(1.02);
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
         }
 
         p, li, span {
             font-weight: normal;
             font-family: 'Libertinus Mono', monospace, serif;
+        }
+
+        /* Body paragraphs from "I am a" to "this tab" made ~15-20% smaller (approx 1.05rem instead of 1.25rem) */
+        #about p {
+            font-size: 1.05rem;
         }
 
         #about p:nth-of-type(1) {
@@ -295,46 +308,31 @@
             margin-left: 20px;
         }
 
-        .cv-item strong {
-            color: var(--hover-color);
-            font-size: 1.2rem;
-            font-weight: bold;
+        /* Style A: Whiter and bolder letters for requested items */
+        .cv-style-a {
+            color: var(--hover-color) !important;
+            font-weight: bold !important;
         }
 
-        .cv-item span {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            font-weight: normal;
-        }
-
-        .cv-name-bold {
-            font-weight: normal;
-            color: var(--text-color);
-        }
-        .cv-lab-bold {
-            font-weight: bold;
-            color: var(--hover-color);
-        }
-        .cv-role-italic {
-            font-style: italic;
-            font-weight: normal;
-            display: block;
-        }
-        .cv-pi-bold {
-            font-weight: bold;
+        /* Style B: Smaller, grayer letters for everything else excluding headers */
+        .cv-style-b {
+            color: var(--accent-color) !important;
+            font-weight: normal !important;
+            font-size: 0.95rem !important;
         }
 
         a {
             color: var(--code-green);
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
         }
         
         a:hover {
             text-decoration: none;
             color: var(--code-green);
             filter: brightness(1.2);
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
         }
 
         .email-code {
@@ -429,7 +427,7 @@
                 I am drawn to how attention, memory, and decision-making get measured — through neuroimaging, real-world behavioral methods, and on-site clinical surveying — and to who gets left out when those measurements shape public health and disability research.
             </div>
             
-            <p>I am a Bachelor of Science Candidate in Neuroscience at <a href="http://collegecatalog.uchicago.edu/thecollege/neuroscience/">Neuroscience</a> Candidate in <a href="https://college.uchicago.edu/">the University of Chicago</a>, minoring in <a href="https://socialsciences.uchicago.edu/department/health-and-society/health-and-society-homepage">health and society</a>. I am expected to graduate June 2030.</p>
+            <p>I am a bachelor of science candidate in <a href="http://collegecatalog.uchicago.edu/thecollege/neuroscience/">Neuroscience</a> at <a href="https://college.uchicago.edu/">the University of Chicago</a>, minoring in <a href="https://socialsciences.uchicago.edu/department/health-and-society/health-and-society-homepage">Health and Society</a>. I am expected to graduate June 2030.</p>
             
             <p>Beyond cognitive neuroscience, my research interests span <span class="green-term">attention and memory</span>, <span class="green-term">critical disability studies/"crip theory,"</span> <span class="green-term">genetic engineering and modification</span>, developmental social cognition.</p>
             
@@ -493,12 +491,12 @@
                 <h3>Education</h3>
                 <div class="cv-item">
                     <div class="cv-item-left">
-                        <span style="font-weight: normal; color: var(--text-color);">The University of Chicago</span>, Chicago, IL<br>
-                        <span style="font-weight: normal; color: var(--text-color);"><strong style="color: var(--hover-color); font-weight: bold;">Major</strong>: Neuroscience, S.B. | <strong style="color: var(--hover-color); font-weight: bold;">Minor</strong>: Health and Society</span><br>
-                        <span class="cv-role-italic">Relevant Completed Coursework: Principles of Biology, Statistical Methods and Applications, General Comprehensive Chemistry I</span>
+                        <span class="cv-style-a">The University of Chicago</span><span class="cv-style-b">, Chicago, IL</span><br>
+                        <span class="cv-style-a">Major:</span><span class="cv-style-b"> Neuroscience, S.B. | </span><span class="cv-style-a">Minor:</span><span class="cv-style-b"> Health and Society</span><br>
+                        <span class="cv-style-b" style="font-style: italic;">Relevant Completed Coursework: Principles of Biology, Statistical Methods and Applications, General Comprehensive Chemistry I</span>
                     </div>
                     <div class="cv-item-right">
-                        <span>Expected 2030</span>
+                        <span class="cv-style-b">Expected 2030</span>
                     </div>
                 </div>
             </div>
@@ -507,24 +505,24 @@
                 <h3>Research Experience</h3>
                 <div class="cv-item">
                     <div class="cv-item-left">
-                        <span class="cv-lab-bold">Environmental Neuroscience Lab</span>, Department of Psychology, The University of Chicago<br>
-                        <span class="cv-role-italic">Project-based Undergraduate Research Assistant</span>
-                        <span>PI: Dr. Marc G. <span class="cv-pi-bold">Berman</span>, Ph.D.</span><br>
-                        <span>Graduate Supervisor: Elizabeth A. <span class="cv-pi-bold">Janey</span>, B.S.</span>
+                        <span class="cv-style-a">Environmental Neuroscience Lab</span><span class="cv-style-b">, Department of Psychology, The University of Chicago</span><br>
+                        <span class="cv-style-b" style="font-style: italic;">Project-based Undergraduate Research Assistant</span><br>
+                        <span class="cv-style-b">PI: Dr. Marc G. </span><span class="cv-style-a">Berman</span><span class="cv-style-b">, Ph.D.</span><br>
+                        <span class="cv-style-b">Graduate Supervisor: Elizabeth A. </span><span class="cv-style-a">Janey</span><span class="cv-style-b">, B.S.</span>
                     </div>
                     <div class="cv-item-right">
-                        <span>Jul. 2026 – Present</span>
+                        <span class="cv-style-b">Jul. 2026 – Present</span>
                     </div>
                 </div>
                 <div class="cv-item" style="margin-top: 20px;">
                     <div class="cv-item-left">
-                        <span class="cv-lab-bold">Awh-Vogel Lab</span>, Department of Psychology, The University of Chicago<br>
-                        <span class="cv-role-italic">Undergraduate Research Assistant</span>
-                        <span>PIs: Dr. Edward K. <span class="cv-pi-bold">Vogel</span>, Ph.D & Dr. Edward S. <span class="cv-pi-bold">Awh</span>, Ph.D.</span><br>
-                        <span>Graduate Supervisor: Gengshi <span class="cv-pi-bold">Hu</span>, B.S.</span>
+                        <span class="cv-style-a">Awh\Vogel Lab</span><span class="cv-style-b">, Department of Psychology, The University of Chicago</span><br>
+                        <span class="cv-style-b" style="font-style: italic;">Undergraduate Research Assistant</span><br>
+                        <span class="cv-style-b">PIs: Dr. Edward K. </span><span class="cv-style-a">Vogel</span><span class="cv-style-b">, Ph.D & Dr. Edward S. </span><span class="cv-style-a">Awh</span><span class="cv-style-b">, Ph.D.</span><br>
+                        <span class="cv-style-b">Graduate Supervisor: Gengshi </span><span class="cv-style-a">Hu</span><span class="cv-style-b">, B.S.</span>
                     </div>
                     <div class="cv-item-right">
-                        <span>Aug. 2026 – Present</span>
+                        <span class="cv-style-b">Aug. 2026 – Present</span>
                     </div>
                 </div>
             </div>
@@ -532,10 +530,10 @@
             <div class="cv-group">
                 <h3>Scholarships and Grants</h3>
                 <div class="cv-item" style="display: block;">
-                    <span>* <span style="font-weight: bold; color: var(--hover-color);">First Phoenix Scholarship</span>, 2026 – 2030, The University of Chicago. <strong style="color:var(--hover-color);">$20,000</strong></span><br>
-                    <span>* <span style="font-weight: bold; color: var(--hover-color);">UChicago Careers in Healthcare</span>, 2027, The University of Chicago. <strong style="color:var(--hover-color);">$5,000</strong></span><br>
-                    <span>* <span style="font-weight: bold; color: var(--hover-color);">Phoenix STEM Program</span>, 2026, Neubauer Family Foundation, The University of Chicago. <strong style="color:var(--hover-color);">$600</strong></span><br>
-                    <span style="font-size: 0.9rem; color: var(--accent-color); float: right; margin-top: 10px;">* Listed by award size.</span>
+                    <span class="cv-style-b">* First Phoenix Scholarship, 2026 – 2030, The University of Chicago. <strong style="color:var(--hover-color);">$20,000</strong></span><br>
+                    <span class="cv-style-b">* UChicago Careers in Healthcare, 2027, The University of Chicago. <strong style="color:var(--hover-color);">$5,000</strong></span><br>
+                    <span class="cv-style-b">* Phoenix STEM Program, 2026, Neubauer Family Foundation, The University of Chicago. <strong style="color:var(--hover-color);">$600</strong></span><br>
+                    <span class="cv-style-b" style="font-size: 0.9rem; float: right; margin-top: 10px;">* Listed by award size.</span>
                 </div>
             </div>
 
@@ -597,4 +595,3 @@
     </script>
 </body>
 </html>
-```[cite: 1, 2]
