@@ -24,15 +24,16 @@
             margin: 0;
             padding: 0;
             line-height: 1.7;
+            width: 100vw;
+            min-height: 100vh;
             overflow-x: hidden;
-            zoom: 80%;
         }
 
         .eeg-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 200vw; 
+            width: 100vw; 
             height: 100vh;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E");
             background-repeat: repeat;
@@ -151,7 +152,6 @@
             font-family: 'Libertinus Mono', monospace, serif;
         }
 
-        /* Original larger size restored */
         .intro-statement {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
@@ -578,11 +578,11 @@
                 eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='%234ade80' stroke-width='1.5'/%3E%3C/svg%3E\")";
                 eegBg.style.animationDuration = "4s";
             } else {
-                // Non-link click: split-second pale code green flash
+                // Non-link click: split-second pale code green flash, then restore default background immediately
                 eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(74, 222, 128, 0.4)' stroke-width='1.5'/%3E%3C/svg%3E\")";
                 setTimeout(() => {
                     eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E\")";
-                }, 300);
+                }, 150);
             }
         });
     </script>
