@@ -38,10 +38,10 @@
             width: 200vw; 
             height: 100vh;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E");
-            background-repeat: repeat-x;
+            background-repeat: repeat;
             background-size: 500px 150px;
             z-index: -1;
-            animation: scroll-eeg 8s linear infinite;
+            animation: scroll-eeg 12s linear infinite;
         }
 
         @keyframes scroll-eeg {
@@ -582,7 +582,7 @@
             </div>
 
             <div style="display: flex; justify-content: center; margin-top: 40px;">
-                <a href="nsheybanicv (3)_3.pdf" download="nsheybanicv (3)_3.pdf" class="btn" style="padding: 10px 20px; font-size: 1.1rem;">view my entire cv here</a>
+                <a href="nsheybanicv (3)_3.pdf" download="nsheybanicv.pdf" class="btn" style="padding: 10px 20px; font-size: 1.1rem;">view my entire cv here</a>
             </div>
         </section>
 
@@ -626,7 +626,7 @@
                 
                 setTimeout(() => {
                     eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E\")";
-                    eegBg.style.animationDuration = "8s";
+                    eegBg.style.animationDuration = "12s";
                 }, 200);
             } else {
                 // Non-link click: split-second pale code green flash, then restore immediately
