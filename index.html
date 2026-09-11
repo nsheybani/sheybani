@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navid Sheybani | University of Chicago</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #e0e0e0;
+            --accent-color: #a3a3a3;
+            --hover-color: #ffffff;
+            --border-color: #333;
+            --code-green: #4ade80; 
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'EB Garamond', Garamond, serif;
+            font-size: 1.25rem; 
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .eeg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200vw; 
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 500px 150px;
+            z-index: -1;
+            animation: scroll-eeg 12s linear infinite;
+        }
+
+        @keyframes scroll-eeg {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-500px); }
+        }
+
+        /* Fixed Home Button */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn img {
+            width: 60px;
+            height: auto;
+            border-radius: 50%;
+            transition: filter 0.3s ease;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .home-btn:hover img {
+            filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(400%) brightness(0.9);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .crest {
+            width: 130px; 
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 50%; 
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0px;
+            font-weight: normal;
+            color: var(--hover-color);
+            letter-spacing: 1px;
+        }
+
+        h1 strong {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .pronunciation {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: normal;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        nav {
+            margin-bottom: 50px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--hover-color);
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--hover-color);
+            margin-bottom: 30px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .intro-statement {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-green);
+            font-size: 1.6rem;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        /* Outline Project Layout */
+        .project-card {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 35px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+            align-items: flex-start;
+        }
+
+        .project-image {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+        }
+        
+        .project-content {
+            flex: 1;
+        }
+
+        .project-header {
+            font-size: 1.3rem;
+            color: var(--hover-color);
+            margin-bottom: 5px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .project-year {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .project-meta {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .project-desc {
+            border-left: 3px solid var(--border-color);
+            padding-left: 15px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            border: 1px solid var(--accent-color);
+            padding: 4px 12px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            border-color: var(--code-green);
+            color: var(--code-green);
+            text-decoration: none;
+        }
+
+        /* CV Layout */
+        .cv-group {
+            margin-bottom: 40px;
+        }
+        
+        .cv-group h3 {
+            font-size: 1.5rem;
+            color: var(--hover-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .cv-item {
+            margin-bottom: 20px;
+        }
+
+        .cv-item strong {
+            color: var(--hover-color);
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .cv-item span {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        a {
+            color: var(--code-green);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .email-code {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-green);
+            font-size: 1.15rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--accent-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+            margin-top: 60px;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-icons img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 6px;
+            filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(400%) brightness(0.9);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .footer-icons a:hover img {
+            transform: scale(1.1);
+            filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(600%) brightness(1.2);
+        }
+
+        @media (max-width: 700px) {
+            .project-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .project-desc {
+                border-left: none;
+                border-top: 3px solid var(--border-color);
+                padding-left: 0;
+                padding-top: 15px;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="eeg-bg"></div>
+
+    <!-- Fixed Top Left Home Button -->
+    <a href="#" class="home-btn" title="Back to top">
+        <img src="shawn-day-ii6BOPjAtVY-unsplash.jpg" alt="Home Brain Logo">
+    </a>
+
+    <div class="container">
+        
+        <div class="header-container">
+            <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="crest">
+            <h1>Navid <strong>Sheybani</strong></h1>
+            <div class="pronunciation">[nuh-veed shay-bah-nee]</div>
+            <h2>University of Chicago BS in Neuroscience</h2>
+        </div>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#cv">CV</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <section id="about">
+            <div class="intro-statement">
+                I am drawn to how attention, memory, and decision-making get measured — through neuroimaging, real-world behavioral methods, and on-site clinical surveying — and to who gets left out when those measurements shape public health and disability research.
+            </div>
+            
+            <p>I am a Bachelor of Science Candidate in Neuroscience at the University of Chicago, minoring in Health and Society. I am expected to graduate June 2030.</p>
+            
+            <p>Beyond cognitive neuroscience, my research interests span attention and memory, critical disability studies/"crip theory," genetic engineering and modification, and developmental social cognition.</p>
+            
+            <p>I am interested in pursuing an M.D./M.P.H., and am completing my BS Laboratory Research thesis (NSCI 29100-29102) in September of 2029 under Drs. Edward K. Vogel and Edward S. Awh.</p>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Ongoing Projects</h2>
+
+            <div class="project-card">
+                <img src="image_5ff043.jpg" alt="UChicago SSD Logo" class="project-image">
+                <div class="project-content">
+                    <div class="project-header">Can student dorm spatial design bridge social class and dictate belonging?</div>
+                    <span class="project-year">2026 – Present</span>
+                    <div class="project-meta">Advisors: Dr. Sarah E. Gaither & Dr. Marc G. Berman<br>Duke & UChicago Departments of Psychology</div>
+                    <div class="project-desc">
+                        Analyzing the impact of physical living environments on resident belonging and cross-race social interactions across Duke and UChicago student dormitories.
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Teaser</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="image_5ff009.png" alt="UT Dallas Logo" class="project-image">
+                <div class="project-content">
+                    <div class="project-header">The Folklore of Capitalism: Ideological Barriers to Socialist Policy Reform in the United States</div>
+                    <span class="project-year">2025 – 2026</span>
+                    <div class="project-meta">Advisor: Dr. Euel W. Elliott<br>School of Economic, Political and Policy Sciences, UT Dallas</div>
+                    <div class="project-desc">
+                        Investigating how American citizens perceive economic systems and how these perceptions influence their attitudes toward policy, governance, and structural change, highlighting the disconnect between expert economic discourse and public beliefs.
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Paper</a>
+                        <a href="#" class="btn">&lt;/&gt; Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="image_5ff3a4.jpg" alt="UChicago CISSR Logo" class="project-image">
+                <div class="project-content">
+                    <div class="project-header">Center for International Social Science Research (CISSR) Project</div>
+                    <span class="project-year">2026 – Present</span>
+                    <div class="project-meta">University of Chicago CISSR</div>
+                    <div class="project-desc">
+                        Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">Paper</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cv">
+            <h2 class="section-title">Curriculum Vitae</h2>
+
+            <div class="cv-group">
+                <h3>Education</h3>
+                <div class="cv-item">
+                    <strong>The University of Chicago, Chicago, IL</strong>
+                    <span>Major: Neuroscience, S.B. | Minor: Health and Society | Expected 2030</span>
+                </div>
+            </div>
+
+            <div class="cv-group">
+                <h3>Research Experience</h3>
+                <div class="cv-item">
+                    <strong>Environmental Neuroscience Lab, University of Chicago</strong>
+                    <span>Project-based Undergraduate Research Assistant | Present</span>
+                </div>
+                <div class="cv-item">
+                    <strong>Awh-Vogel Lab, University of Chicago</strong>
+                    <span>Undergraduate Research Assistant | Aug. 2026 - Present</span>
+                </div>
+            </div>
+
+            <div class="cv-group">
+                <h3>Scholarships and Grants</h3>
+                <div class="cv-item">
+                    <span>First Phoenix Scholarship, 2026–2030, University of Chicago. $20,000</span>
+                    <span>UChicago Careers in Healthcare, 2027, University of Chicago. $5,000</span>
+                    <span>Phoenix STEM Program, 2026, Neubauer Family Foundation. $600</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <p style="text-align: center;">
+                My ORCID iD can be found <a href="https://orcid.org/0009-0000-7181-259X" target="_blank">here</a>, and my SSRN publications <a href="https://papers.ssrn.com/Sol3/Cf_Dev/AbsByAuth.cfm?per_id=12983768" target="_blank">here</a>.
+            </p>
+            <p style="text-align: center;">
+                I am always happy to hear from you! You can reach me via email at:<br><br>
+                Professional: <a href="mailto:nsheybani@outlook.com" class="email-code">nsheybani@outlook.com</a><br>
+                Institutional: <a href="mailto:sheybani@uchicago.edu" class="email-code">sheybani@uchicago.edu</a><br><br>
+                <em>(I don't bite — I promise.)</em>
+            </p>
+        </section>
+
+        <footer>
+            <div class="footer-icons">
+                <a href="https://linkedin.com/in/nsheybani" target="_blank"><img src="image_5f7b30.png" alt="LinkedIn"></a>
+                <a href="mailto:sheybani@uchicago.edu"><img src="image_5f7b87.jpg" alt="Email"></a>
+                <a href="https://neuroscience.uchicago.edu" target="_blank"><img src="UChicago-logo_2.jpg" alt="UChicago"></a>
+                <a href="https://arxiv.org/a/0009-0000-7181-259X" target="_blank"><img src="image_5f7b67.png" alt="arXiv"></a>
+                <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=12983768" target="_blank"><img src="68747470733a2f2f7374617469632e7373726e2e636f6d2f6366696e636c756465732f696d672f66617669636f6e2f7361666172692d70696e6e65642d7461622e737667.png" alt="SSRN"></a>
+            </div>
+            
+            1101 East 56th Street • Chicago, Illinois 60637<br>
+            &copy; 2026 Navid Sheybani
+        </footer>
+        
+    </div>
+
+</body>
+</html>
