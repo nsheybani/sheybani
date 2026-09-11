@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navid Sheybani | University of Chicago</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
-
         :root {
             --bg-color: #0d0d0d;
             --text-color: #e0e0e0;
@@ -19,7 +17,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'EB Garamond', Garamond, serif;
+            font-family: Garamond, "EB Garamond", serif;
             font-size: 1.25rem; 
             margin: 0;
             padding: 0;
@@ -45,7 +43,6 @@
             100% { transform: translateX(-500px); }
         }
 
-        /* Fixed Home Button */
         .home-btn {
             position: fixed;
             top: 20px;
@@ -88,16 +85,12 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 0px;
-            font-weight: normal;
+            font-weight: bold;
             color: var(--hover-color);
             letter-spacing: 1px;
-        }
-
-        h1 strong {
-            font-size: 4rem;
-            font-weight: bold;
+            font-family: Garamond, "EB Garamond", serif;
         }
 
         .pronunciation {
@@ -105,14 +98,17 @@
             color: var(--accent-color);
             font-size: 1.2rem;
             margin-bottom: 10px;
+            font-weight: bold;
+            font-family: Garamond, "EB Garamond", serif;
         }
 
         h2 {
             font-size: 1.3rem;
             color: var(--accent-color);
-            font-weight: normal;
+            font-weight: bold;
             margin-top: 10px;
             margin-bottom: 30px;
+            font-family: Garamond, "EB Garamond", serif;
         }
 
         nav {
@@ -123,16 +119,18 @@
             display: flex;
             justify-content: center;
             gap: 30px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         nav a {
-            color: var(--accent-color);
+            color: var(--hover-color);
+            font-weight: bold;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--hover-color);
+            color: var(--code-green);
         }
 
         section {
@@ -146,6 +144,7 @@
             font-weight: bold;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
+            font-family: Garamond, "EB Garamond", serif;
         }
 
         .intro-statement {
@@ -158,17 +157,29 @@
             text-align: left;
         }
 
-        /* Outline Project Layout */
+        p, li, span {
+            font-weight: bold;
+            font-family: Garamond, "EB Garamond", serif;
+        }
+
+        /* Project Card with Pop-out Animation */
         .project-card {
             display: flex;
             gap: 25px;
             margin-bottom: 35px;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: Garamond, "EB Garamond", serif;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             padding: 25px;
             border-radius: 8px;
             align-items: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.1);
+            border-color: var(--code-green);
         }
 
         .project-image {
@@ -202,7 +213,7 @@
 
         .project-meta {
             color: var(--accent-color);
-            font-style: italic;
+            font-weight: bold;
             margin-bottom: 15px;
             font-size: 1rem;
             line-height: 1.4;
@@ -215,6 +226,7 @@
             margin-bottom: 15px;
             font-size: 1.05rem;
             line-height: 1.5;
+            font-weight: bold;
         }
 
         .btn-group {
@@ -229,7 +241,9 @@
             text-decoration: none;
             border-radius: 4px;
             font-size: 0.95rem;
+            font-weight: bold;
             transition: all 0.2s ease;
+            font-family: Garamond, "EB Garamond", serif;
         }
 
         .btn:hover {
@@ -238,7 +252,6 @@
             text-decoration: none;
         }
 
-        /* CV Layout */
         .cv-group {
             margin-bottom: 40px;
         }
@@ -248,6 +261,7 @@
             color: var(--hover-color);
             margin-bottom: 15px;
             font-weight: bold;
+            font-family: Garamond, "EB Garamond", serif;
         }
 
         .cv-item {
@@ -258,6 +272,7 @@
             color: var(--hover-color);
             font-size: 1.2rem;
             display: block;
+            font-weight: bold;
         }
 
         .cv-item span {
@@ -265,11 +280,13 @@
             font-size: 1.1rem;
             display: block;
             margin-bottom: 4px;
+            font-weight: bold;
         }
 
         a {
             color: var(--code-green);
             text-decoration: none;
+            font-weight: bold;
         }
         
         a:hover {
@@ -280,6 +297,7 @@
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
             font-size: 1.15rem;
+            font-weight: bold;
         }
 
         footer {
@@ -289,6 +307,7 @@
             border-top: 1px solid var(--border-color);
             padding-top: 30px;
             margin-top: 60px;
+            font-weight: bold;
         }
 
         .footer-icons {
@@ -335,7 +354,6 @@
 
     <div class="eeg-bg"></div>
 
-    <!-- Fixed Top Left Home Button -->
     <a href="#" class="home-btn" title="Back to top">
         <img src="shawn-day-ii6BOPjAtVY-unsplash.jpg" alt="Home Brain Logo">
     </a>
@@ -344,16 +362,16 @@
         
         <div class="header-container">
             <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="crest">
-            <h1>Navid <strong>Sheybani</strong></h1>
+            <h1>Navid Sheybani</h1>
             <div class="pronunciation">[nuh-veed shay-bah-nee]</div>
-            <h2>University of Chicago BS in Neuroscience</h2>
+            <h2>SB, Neuroscience @ UChicago | Pre-medical.</h2>
         </div>
 
         <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#cv">CV</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#cv">cv</a>
+            <a href="#contact">contact</a>
         </nav>
 
         <section id="about">
