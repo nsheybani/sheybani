@@ -80,19 +80,35 @@
             100% { transform: translateX(-500px); }
         }
 
-        .home-btn {
+        /* Top-Left Container for Brain (Transparent, no bg) & Asynchronous Waves */
+        .home-container {
             position: fixed;
             top: 20px;
             left: 20px;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        body.scrolled .home-container {
+            opacity: 0;
+            transform: translateX(-15px);
+            pointer-events: none;
+        }
+
+        .home-btn {
+            display: inline-block;
             transition: transform 0.3s ease;
         }
 
         .home-btn img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: contain; /* Ensures transparent image scales cleanly without background fills */
+            background: transparent;
+            border-radius: 0;
             transition: filter 0.3s ease;
             filter: var(--icon-filter);
         }
@@ -101,7 +117,30 @@
             transform: scale(1.1);
         }
 
-        /* Sidebar that slides in on scroll */
+        /* Asynchronous Wave Stack: One wave per line, offset stages, constant speed, no consecutive waves in same stage */
+        .wave-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 28px;
+        }
+
+        .wave-line {
+            height: 2px;
+            background-color: var(--code-green);
+            border-radius: 9999px;
+            transform-origin: left;
+            animation: wave-anim 2s infinite ease-in-out;
+            transition: background-color 0.4s ease;
+        }
+
+        @keyframes wave-anim {
+            0% { transform: scaleX(0.3); opacity: 0.3; }
+            50% { transform: scaleX(1); opacity: 1; }
+            100% { transform: scaleX(0.3); opacity: 0.3; }
+        }
+
+        /* Sidebar that slides in when nav bar reaches top */
         .sidebar {
             position: fixed;
             top: 0;
@@ -215,7 +254,7 @@
         nav {
             font-size: 1.2rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 25px; /* Added a tiny bit more space below the nav bar */
+            padding-bottom: 32px; /* Added a tiny bit more space below the nav bar */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -255,6 +294,7 @@
         }
 
         section {
+            margin-top: 40px; /* Added a TINY bit more space between the top bar and the rest of the website */
             margin-bottom: 80px;
         }
 
@@ -269,7 +309,6 @@
             transition: color 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Restored original glowing code style with custom size (tad smaller than original 1.6rem -> 1.45rem) */
         .intro-statement {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
@@ -583,9 +622,11 @@
         document.addEventListener("DOMContentLoaded", () => {
             runDecipher();
 
-            // Adjusted scroll threshold (250px) so it stays visible down to the nav bar as requested
+            // Dynamic scroll trigger based on when the navigation bar hits the top of the viewport
+            const navElement = document.getElementById('main-nav');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 250) {
+                const navRect = navElement.getBoundingClientRect();
+                if (navRect.top <= 0) {
                     document.body.classList.add('scrolled');
                 } else {
                     document.body.classList.remove('scrolled');
@@ -617,11 +658,20 @@
 
     <div class="eeg-bg"></div>
 
-    <a href="#" class="home-btn" title="Back to top">
-        <img src="shawn-day-ii6BOPjAtVY-unsplash.jpg" alt="Home Brain Logo">
-    </a>
+    <!-- Top-Left Brain (Transparent, no bg) & Asynchronous Waves Container -->
+    <div class="home-container">
+        <a href="#" class="home-btn" title="Back to top">
+            <img src="shawn-day-ii6BOPjAtVY-unsplash.jpg" alt="Home Brain Logo">
+        </a>
+        <div class="wave-stack">
+            <!-- Distinct phases per line, constant speed, never matching consecutive stages -->
+            <div class="wave-line" style="animation-delay: 0s;"></div>
+            <div class="wave-line" style="animation-delay: 0.6s;"></div>
+            <div class="wave-line" style="animation-delay: 1.2s;"></div>
+        </div>
+    </div>
 
-    <!-- Sidebar that slides in on scroll -->
+    <!-- Sidebar that slides in when nav reaches top -->
     <div class="sidebar" id="sidebar">
         <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="sidebar-crest">
         <div class="sidebar-name">Navid<br>Sheybani</div>
@@ -637,7 +687,7 @@
                 <h2>SB, Neuroscience @ UChicago | Pre-medical.</h2>
             </div>
 
-            <nav>
+            <nav id="main-nav">
                 <a href="#about">about</a>
                 <a href="#projects">projects</a>
                 <a href="#cv">cv</a>
@@ -774,7 +824,7 @@
                 <a href="mailto:sheybani@uchicago.edu"><img src="image_5f7b87.jpg" alt="Email"></a>
                 <a href="https://neuroscience.uchicago.edu" target="_blank"><img src="uchicago-seal.jpg" alt="UChicago SEAL"></a>
                 <a href="https://arxiv.org/a/0009-0000-7181-259X" target="_blank"><img src="image_5f7b67.png" alt="arXiv"></a>
-                <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=12983768" target="_blank"><img src="68747470733a2f2f7374617469632e7373726e2e636f6d2f6366696e636c756465732f696d672f66617669636f6e2f7361666172692d70696e6e65642d7461622e737667.png" alt="SSRN"></a>
+                <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=12983768" target="_blank"><img src="68747470733a2f2f7374617469632e7373726e2e636f6d2f6366696e636c756465732f696d672f66617669636f6e2f7361666176692d70696e6e65642d7461622e737667.png" alt="SSRN"></a>
             </div>
             
             1101 East 56th Street • Chicago, Illinois 60637<br>
@@ -797,7 +847,7 @@
             
             const defaultC1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
             const defaultC2 = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)';
-            const defaultC3 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
+            const defaultC3 = isLight,  defaultC3 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
             
             if (link) {
                 eegBg.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='${colorStroke}' stroke-width='1.5'/%3E%3C/svg%3E")`;
