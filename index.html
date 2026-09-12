@@ -16,6 +16,32 @@
             --hover-color: #ffffff;
             --border-color: #333;
             --code-green: #4ade80; 
+            --glow-color: rgba(74, 222, 128, 0.5);
+            --intro-glow: rgba(74, 222, 128, 0.4);
+            --card-shadow: rgba(74, 222, 128, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --icon-filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(400%) brightness(0.9);
+            --icon-filter-hover: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(600%) brightness(1.2);
+            --sidebar-bg: rgba(13, 13, 13, 0.85);
+            --sidebar-border: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Light Mode Variables (Lighter lavender background) */
+        body.light-mode {
+            --bg-color: #F3EEFC; 
+            --text-color: #2c2c2c; 
+            --accent-color: #4a4a4a; 
+            --hover-color: #000000; 
+            --border-color: #d6c9ec; 
+            --code-green: #8A63C6; 
+            --glow-color: rgba(138, 99, 198, 0.5);
+            --intro-glow: rgba(138, 99, 198, 0.4);
+            --card-shadow: rgba(138, 99, 198, 0.15);
+            --card-bg: rgba(0, 0, 0, 0.03);
+            --icon-filter: grayscale(100%) sepia(100%) hue-rotate(240deg) saturate(300%) brightness(0.7);
+            --icon-filter-hover: grayscale(100%) sepia(100%) hue-rotate(240deg) saturate(500%) brightness(0.9);
+            --sidebar-bg: rgba(243, 238, 252, 0.85); 
+            --sidebar-border: rgba(0, 0, 0, 0.05);
         }
 
         body {
@@ -29,6 +55,7 @@
             width: 100vw;
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .eeg-bg {
@@ -37,11 +64,15 @@
             left: 0;
             width: 200vw; 
             height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3Cpath d='M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3Cpath d='M0,110 L70,110 L80,85 L95,140 L115,75 L130,125 L145,110 L250,110 L260,95 L275,130 L290,80 L305,120 L315,110 L500,110' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
             background-repeat: repeat;
             background-size: 500px 150px;
             z-index: -1;
             animation: scroll-eeg 12s linear infinite;
+        }
+
+        body.light-mode .eeg-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(0,0,0,0.06)' stroke-width='1.5'/%3E%3Cpath d='M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40' fill='none' stroke='rgba(0,0,0,0.03)' stroke-width='1'/%3E%3Cpath d='M0,110 L70,110 L80,85 L95,140 L115,75 L130,125 L145,110 L250,110 L260,95 L275,130 L290,80 L305,120 L315,110 L500,110' fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3C/svg%3E");
         }
 
         @keyframes scroll-eeg {
@@ -63,11 +94,57 @@
             object-fit: cover;
             border-radius: 50%;
             transition: filter 0.3s ease;
-            filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(400%) brightness(0.9);
+            filter: var(--icon-filter);
         }
 
         .home-btn:hover {
             transform: scale(1.1);
+        }
+
+        /* Sidebar that slides in on scroll */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-right: 1px solid var(--sidebar-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 110px; /* Space for the home button */
+            z-index: 998; /* Behind the home button */
+            opacity: 0;
+            transform: translateX(-100%);
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1), background 0.4s ease, border-color 0.4s ease;
+        }
+
+        body.scrolled .sidebar {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .sidebar-crest {
+            width: 65px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-name {
+            font-size: 1.15rem;
+            margin: 0;
+            color: var(--hover-color);
+            font-weight: bold;
+            font-family: 'Libertinus Mono', monospace, serif;
+            text-align: center;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            transition: color 0.4s ease;
         }
 
         .container {
@@ -76,9 +153,24 @@
             padding: 60px 30px;
         }
 
+        .hero-section {
+            min-height: 85vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         .header-container {
             text-align: center;
             margin-bottom: 50px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        body.scrolled .header-container {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.97);
+            pointer-events: none;
         }
 
         .crest {
@@ -93,11 +185,12 @@
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 0px;
+            margin-bottom: -5px; /* Reduced space between name and pronunciation */
             font-weight: bold;
             color: var(--hover-color);
             letter-spacing: 1px;
             font-family: 'Libertinus Mono', monospace, serif;
+            transition: color 0.4s ease;
         }
 
         .pronunciation {
@@ -107,6 +200,7 @@
             margin-bottom: 10px;
             font-weight: bold;
             font-family: 'Libertinus Mono', monospace, serif;
+            transition: color 0.4s ease;
         }
 
         h2 {
@@ -114,19 +208,21 @@
             color: var(--accent-color);
             font-weight: bold;
             margin-top: 10px;
-            margin-bottom: 30px;
             font-family: 'Libertinus Mono', monospace, serif;
+            transition: color 0.4s ease;
         }
 
         nav {
-            margin-bottom: 50px;
             font-size: 1.2rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 30px;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            transition: opacity 0.4s ease, border-color 0.4s ease;
+            width: 100%;
         }
 
         nav a {
@@ -138,6 +234,24 @@
 
         nav a:hover {
             color: var(--code-green);
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            color: var(--hover-color);
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
         }
 
         section {
@@ -152,23 +266,24 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
             font-family: 'Libertinus Mono', monospace, serif;
+            transition: color 0.4s ease, border-color 0.4s ease;
         }
 
         .intro-statement {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
-            font-size: 1.6rem; 
-            font-weight: bold;
+            font-size: 1.05rem; 
+            font-weight: normal; 
             line-height: 1.5;
             margin-bottom: 40px;
             text-align: left;
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.4s ease;
             cursor: default;
         }
 
         .intro-statement:hover {
             transform: scale(1.02);
-            text-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+            text-shadow: 0 0 15px var(--intro-glow);
         }
 
         p, li, span {
@@ -180,13 +295,10 @@
             font-size: 1.05rem;
         }
 
-        #about p:nth-of-type(1) {
-            font-weight: bold;
-        }
-
         .green-term {
             color: var(--code-green);
             font-weight: normal;
+            transition: color 0.4s ease;
         }
 
         .project-card {
@@ -194,17 +306,17 @@
             gap: 25px;
             margin-bottom: 35px;
             font-family: 'Libertinus Mono', monospace, serif;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
             border-radius: 8px;
             align-items: flex-start;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease, background 0.4s ease;
         }
 
         .project-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.1);
+            box-shadow: 0 10px 30px var(--card-shadow);
             border-color: var(--code-green);
         }
 
@@ -215,6 +327,7 @@
             border-radius: 6px;
             flex-shrink: 0;
             border: 1px solid var(--border-color);
+            transition: border-color 0.4s ease;
         }
         
         .project-content {
@@ -227,6 +340,7 @@
             margin-bottom: 5px;
             font-weight: bold;
             line-height: 1.3;
+            transition: color 0.4s ease;
         }
 
         .project-year {
@@ -235,6 +349,7 @@
             margin-bottom: 5px;
             font-size: 0.95rem;
             color: var(--text-color);
+            transition: color 0.4s ease;
         }
 
         .project-meta {
@@ -243,6 +358,7 @@
             margin-bottom: 15px;
             font-size: 1rem;
             line-height: 1.4;
+            transition: color 0.4s ease;
         }
 
         .project-desc {
@@ -253,6 +369,7 @@
             font-size: 1.05rem;
             line-height: 1.5;
             font-weight: normal;
+            transition: color 0.4s ease, border-color 0.4s ease;
         }
 
         .btn-group {
@@ -288,6 +405,7 @@
             margin-bottom: 15px;
             font-weight: bold;
             font-family: 'Libertinus Mono', monospace, serif;
+            transition: color 0.4s ease;
         }
 
         .cv-item {
@@ -308,16 +426,19 @@
             margin-left: 20px;
         }
 
+        /* CV Text Formatting: Code green / purple and white / black */
         .cv-style-a {
-            color: var(--hover-color) !important;
+            color: var(--code-green) !important;
             font-weight: bold !important;
             font-size: 1.15rem !important;
+            transition: color 0.4s ease;
         }
 
         .cv-style-b {
-            color: var(--accent-color) !important;
+            color: var(--hover-color) !important;
             font-weight: normal !important;
             font-size: 1.15rem !important;
+            transition: color 0.4s ease;
         }
 
         a {
@@ -331,13 +452,23 @@
             text-decoration: none;
             color: var(--code-green);
             filter: brightness(1.2);
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .white-link {
+            color: var(--hover-color) !important;
+        }
+
+        .white-link:hover {
+            color: var(--code-green) !important;
+            text-shadow: 0 0 10px var(--glow-color);
         }
 
         .email-code {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
             font-weight: bold;
+            transition: color 0.4s ease;
         }
 
         footer {
@@ -348,6 +479,7 @@
             padding-top: 30px;
             margin-top: 60px;
             font-weight: normal;
+            transition: color 0.4s ease, border-color 0.4s ease;
         }
 
         .footer-icons {
@@ -364,12 +496,12 @@
             object-fit: cover;
             border-radius: 6px;
             transition: transform 0.2s ease, filter 0.2s ease;
-            filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(400%) brightness(0.9);
+            filter: var(--icon-filter);
         }
 
         .footer-icons a:hover img {
             transform: scale(1.1);
-            filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(600%) brightness(1.2);
+            filter: var(--icon-filter-hover);
         }
 
         @media (max-width: 700px) {
@@ -393,6 +525,16 @@
             .cv-item-right {
                 text-align: left;
                 margin-left: 0;
+            }
+            .sidebar {
+                width: 100px;
+                padding-top: 100px;
+            }
+            .sidebar-crest {
+                width: 45px;
+            }
+            .sidebar-name {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -431,8 +573,38 @@
             }, 1000);
         }
 
+        // Varied, non-cluttered custom wave background paths
+        function getNormalSvg(color1, color2, color3) {
+            const path1 = "M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75";
+            const path2 = "M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40";
+            const path3 = "M0,110 L70,110 L80,85 L95,140 L115,75 L130,125 L145,110 L250,110 L260,95 L275,130 L290,80 L305,120 L315,110 L500,110";
+            return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='${path1}' fill='none' stroke='${color1}' stroke-width='1.5'/%3E%3Cpath d='${path2}' fill='none' stroke='${color2}' stroke-width='1'/%3E%3Cpath d='${path3}' fill='none' stroke='${color3}' stroke-width='1'/%3E%3C/svg%3E")`;
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             runDecipher();
+
+            // Toggle scrolled state for smooth sidebar slide-in illusion
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    document.body.classList.add('scrolled');
+                } else {
+                    document.body.classList.remove('scrolled');
+                }
+            });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                
+                const isLight = document.body.classList.contains('light-mode');
+                const c1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
+                const c2 = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)';
+                const c3 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
+                
+                document.querySelector('.eeg-bg').style.backgroundImage = getNormalSvg(c1, c2, c3);
+            });
         });
 
         document.addEventListener("visibilitychange", () => {
@@ -450,21 +622,30 @@
         <img src="shawn-day-ii6BOPjAtVY-unsplash.jpg" alt="Home Brain Logo">
     </a>
 
+    <!-- Sidebar that slides in from the left on scroll -->
+    <div class="sidebar" id="sidebar">
+        <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="sidebar-crest">
+        <div class="sidebar-name">Navid<br>Sheybani</div>
+    </div>
+
     <div class="container">
         
-        <div class="header-container">
-            <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="crest">
-            <h1>Navid Sheybani</h1>
-            <div class="pronunciation">[nuh-veed shay-bah-nee]</div>
-            <h2>SB, Neuroscience @ UChicago | Pre-medical.</h2>
-        </div>
+        <div class="hero-section">
+            <div class="header-container" id="main-header">
+                <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="crest">
+                <h1>Navid Sheybani</h1>
+                <div class="pronunciation">[nuh-veed shay-bah-nee]</div>
+                <h2>SB, Neuroscience @ UChicago | Pre-medical.</h2>
+            </div>
 
-        <nav>
-            <a href="#about">about</a>
-            <a href="#projects">projects</a>
-            <a href="#cv">cv</a>
-            <a href="#contact">contact</a>
-        </nav>
+            <nav>
+                <a href="#about">about</a>
+                <a href="#projects">projects</a>
+                <a href="#cv">cv</a>
+                <a href="#contact">contact</a>
+                <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Mode">🌓</button>
+            </nav>
+        </div>
 
         <section id="about">
             <div class="intro-statement">
@@ -515,7 +696,7 @@
             <div class="project-card">
                 <img src="image_5ff3a4.jpg" alt="UChicago CISSR Logo" class="project-image">
                 <div class="project-content">
-                    <div class="project-header"><a href="#" style="color: var(--hover-color);">Illegible Bodies Run Through Illegible Prose:&nbsp; Disability Studies' Accessibility Paradox</a></div>
+                    <div class="project-header"><a href="#" class="white-link">Illegible Bodies Run Through Illegible Prose:&nbsp; Disability Studies' Accessibility Paradox</a></div>
                     <span class="project-year">2026 – Present</span>
                     <div class="project-meta">Center for International Social Science Research at the University of Chicago (CISSR)</div>
                     <div class="project-desc">
@@ -536,7 +717,7 @@
                 <div class="cv-item">
                     <div class="cv-item-left">
                         <span class="cv-style-a">The University of Chicago</span><span class="cv-style-b">, Chicago, IL</span><br>
-                        <span class="cv-style-a">Major:</span><span class="cv-style-b"> Neuroscience, S.B. | </span><span class="cv-style-a">Minor:</span><span class="cv-style-b"> Health and Society</span><br>
+                        <span class="cv-style-a">Major:</span><span class="cv-style-b"> Neuroscience, S.B. | </span><span class="cv-style-a">Minor:</span><span class="cv-style-b"> Health and Society</span>
                     </div>
                     <div class="cv-item-right">
                         <span class="cv-style-b">Expected 2030</span>
@@ -571,7 +752,7 @@
             </div>
 
             <div style="display: flex; justify-content: center; margin-top: 40px;">
-                <a href="nsheybanicv.pdf" download="nsheybanicv.pdf" class="btn" style="padding: 10px 20px; font-size: 1.1rem;">view my entire cv here</a>
+                <a href="nsheybanicv (3).pdf" download="nsheybanicv (3).pdf" class="btn" style="padding: 10px 20px; font-size: 1.1rem;">download my entire cv here &darr;</a>
             </div>
         </section>
 
@@ -606,22 +787,31 @@
     <script>
         document.addEventListener('click', function(e) {
             const link = e.target.closest('a');
+            const themeBtn = e.target.closest('#theme-toggle');
+            if (themeBtn) return; 
+            
             const eegBg = document.querySelector('.eeg-bg');
+            const isLight = document.body.classList.contains('light-mode');
+            
+            const colorStroke = isLight ? '%238A63C6' : '%234ade80';
+            const shadowStrokeColor = isLight ? 'rgba(138, 99, 198, 0.4)' : 'rgba(74, 222, 128, 0.4)';
+            
+            const defaultC1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
+            const defaultC2 = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)';
+            const defaultC3 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
             
             if (link) {
-                // Hyperlink clicked: beta waves effect for a split second (150ms), then restores
-                eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='%234ade80' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                eegBg.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='${colorStroke}' stroke-width='1.5'/%3E%3C/svg%3E")`;
                 eegBg.style.animationDuration = "4s";
                 
                 setTimeout(() => {
-                    eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                    eegBg.style.backgroundImage = getNormalSvg(defaultC1, defaultC2, defaultC3);
                     eegBg.style.animationDuration = "12s";
                 }, 200);
             } else {
-                // Non-link click: split-second pale code green flash, then restore immediately
-                eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(74, 222, 128, 0.4)' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                eegBg.style.backgroundImage = getNormalSvg(shadowStrokeColor, defaultC2, defaultC3);
                 setTimeout(() => {
-                    eegBg.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath id='eeg-path' d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C/svg%3E\")";
+                    eegBg.style.backgroundImage = getNormalSvg(defaultC1, defaultC2, defaultC3);
                 }, 150);
             }
         });
