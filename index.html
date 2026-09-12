@@ -115,8 +115,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 110px; /* Space for the home button */
-            z-index: 998; /* Behind the home button */
+            padding-top: 110px; 
+            z-index: 998; 
             opacity: 0;
             transform: translateX(-100%);
             pointer-events: none;
@@ -185,7 +185,7 @@
 
         h1 {
             font-size: 3rem;
-            margin-bottom: -5px; /* Reduced space between name and pronunciation */
+            margin-bottom: -5px; 
             font-weight: bold;
             color: var(--hover-color);
             letter-spacing: 1px;
@@ -215,7 +215,7 @@
         nav {
             font-size: 1.2rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
+            padding-bottom: 25px; /* Added a tiny bit more space below the nav bar */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -269,11 +269,12 @@
             transition: color 0.4s ease, border-color 0.4s ease;
         }
 
+        /* Restored original glowing code style with custom size (tad smaller than original 1.6rem -> 1.45rem) */
         .intro-statement {
             font-family: 'Courier New', Courier, monospace;
             color: var(--code-green);
-            font-size: 1.05rem; 
-            font-weight: normal; 
+            font-size: 1.45rem; 
+            font-weight: bold;
             line-height: 1.5;
             margin-bottom: 40px;
             text-align: left;
@@ -426,7 +427,6 @@
             margin-left: 20px;
         }
 
-        /* CV Text Formatting: Code green / purple and white / black */
         .cv-style-a {
             color: var(--code-green) !important;
             font-weight: bold !important;
@@ -573,7 +573,6 @@
             }, 1000);
         }
 
-        // Varied, non-cluttered custom wave background paths
         function getNormalSvg(color1, color2, color3) {
             const path1 = "M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75";
             const path2 = "M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40";
@@ -584,9 +583,9 @@
         document.addEventListener("DOMContentLoaded", () => {
             runDecipher();
 
-            // Toggle scrolled state for smooth sidebar slide-in illusion
+            // Adjusted scroll threshold (250px) so it stays visible down to the nav bar as requested
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 80) {
+                if (window.scrollY > 250) {
                     document.body.classList.add('scrolled');
                 } else {
                     document.body.classList.remove('scrolled');
@@ -622,7 +621,7 @@
         <img src="shawn-day-ii6BOPjAtVY-unsplash.jpg" alt="Home Brain Logo">
     </a>
 
-    <!-- Sidebar that slides in from the left on scroll -->
+    <!-- Sidebar that slides in on scroll -->
     <div class="sidebar" id="sidebar">
         <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="sidebar-crest">
         <div class="sidebar-name">Navid<br>Sheybani</div>
@@ -635,7 +634,7 @@
                 <img src="UChicago-logo_2.jpg" alt="University of Chicago Logo" class="crest">
                 <h1>Navid Sheybani</h1>
                 <div class="pronunciation">[nuh-veed shay-bah-nee]</div>
-                <h2>Neuroscience BS Candidate @ UChicago</h2>
+                <h2>SB, Neuroscience @ UChicago | Pre-medical.</h2>
             </div>
 
             <nav>
