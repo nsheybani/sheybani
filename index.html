@@ -26,7 +26,7 @@
             --sidebar-border: rgba(255, 255, 255, 0.05);
         }
 
-        /* Light Mode Variables (Lighter lavender background) */
+        /* Light Mode Variables */
         body.light-mode {
             --bg-color: #F3EEFC; 
             --text-color: #2c2c2c; 
@@ -58,26 +58,27 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
+        /* Compact multi-band EEG Background matching all 5 wave types (Gamma, Beta, Alpha, Theta, Delta) with minimal dead space */
         .eeg-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 200vw; 
             height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3Cpath d='M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3Cpath d='M0,110 L70,110 L80,85 L95,140 L115,75 L130,125 L145,110 L250,110 L260,95 L275,130 L290,80 L305,120 L315,110 L500,110' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='280' viewBox='0 0 800 280'%3E%3C!-- Gamma: Rapid dense jagged spikes --%3E%3Cpath d='M0,30 L10,15 L20,45 L30,20 L40,40 L50,10 L60,50 L70,20 L80,35 L90,15 L100,45 L110,25 L120,40 L130,15 L140,50 L150,20 L160,35 L170,15 L180,45 L190,25 L200,40 L210,15 L220,50 L230,20 L240,35 L250,15 L260,45 L270,25 L280,40 L290,15 L300,50 L310,20 L320,35 L330,15 L340,45 L350,25 L360,40 L370,15 L380,50 L390,20 L400,35 L410,15 L420,45 L430,25 L440,40 L450,15 L460,50 L470,20 L480,35 L490,15 L500,45 L510,25 L520,40 L530,15 L540,50 L550,20 L560,35 L570,15 L580,45 L590,25 L600,40 L610,15 L620,50 L630,20 L640,35 L650,15 L660,45 L670,25 L680,40 L690,15 L700,50 L710,20 L720,35 L730,15 L740,45 L750,25 L760,40 L770,15 L780,50 L790,25 L800,30' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1.2'/%3E%3C!-- Beta: Active medium jagged waves --%3E%3Cpath d='M0,85 C10,65 15,105 25,75 C35,100 45,70 55,95 C65,70 75,105 85,80 C95,95 105,65 115,90 C125,75 135,105 145,85 C155,95 165,65 175,90 C185,75 195,105 205,80 C215,95 225,70 235,90 C245,75 255,105 265,85 C275,95 285,65 295,90 C305,75 315,105 325,80 C335,95 345,70 355,90 C365,75 375,105 385,85 C395,95 405,65 415,90 C425,75 435,105 445,80 C455,95 465,70 475,90 C485,75 495,105 505,85 C515,95 525,65 535,90 C545,75 555,105 565,80 C575,95 585,70 595,90 C605,75 615,105 625,85 C635,95 645,65 655,90 C665,75 675,105 685,80 C695,95 705,70 715,90 C725,75 735,105 745,85 C755,95 765,65 775,90 C785,75 795,95 800,85' fill='none' stroke='rgba(255,255,255,0.035)' stroke-width='1.2'/%3E%3C!-- Alpha: Smooth sinusoidal spindles --%3E%3Cpath d='M0,140 C20,110 30,170 50,140 C70,110 80,170 100,140 C120,110 130,170 150,140 C170,110 180,170 200,140 C220,110 230,170 250,140 C270,110 280,170 300,140 C320,110 330,170 350,140 C370,110 380,170 400,140 C420,110 430,170 450,140 C470,110 480,170 500,140 C520,110 530,170 550,140 C570,110 580,170 600,140 C620,110 630,170 650,140 C670,110 680,170 700,140 C720,110 730,170 750,140 C770,110 780,170 800,140' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3C!-- Theta: Slower rolling rhythmic undulations --%3E%3Cpath d='M0,195 C35,160 55,230 90,195 C125,160 145,230 180,195 C215,160 235,230 270,195 C305,160 325,230 360,195 C395,160 415,230 450,195 C485,160 505,230 540,195 C575,160 595,230 630,195 C665,160 685,230 720,195 C755,160 775,230 800,195' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.3'/%3E%3C!-- Delta: Deep continuous slow sweeps --%3E%3Cpath d='M0,250 C60,210 90,290 150,250 C210,210 240,290 300,250 C360,210 390,290 450,250 C510,210 540,290 600,250 C660,210 690,290 750,250 C780,230 790,265 800,250' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1.4'/%3E%3C/svg%3E");
             background-repeat: repeat;
-            background-size: 500px 150px;
+            background-size: 800px 280px;
             z-index: -1;
-            animation: scroll-eeg 12s linear infinite;
+            animation: scroll-eeg 16s linear infinite;
         }
 
         body.light-mode .eeg-bg {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75' fill='none' stroke='rgba(0,0,0,0.06)' stroke-width='1.5'/%3E%3Cpath d='M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40' fill='none' stroke='rgba(0,0,0,0.03)' stroke-width='1'/%3E%3Cpath d='M0,110 L70,110 L80,85 L95,140 L115,75 L130,125 L145,110 L250,110 L260,95 L275,130 L290,80 L305,120 L315,110 L500,110' fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='280' viewBox='0 0 800 280'%3E%3Cpath d='M0,30 L10,15 L20,45 L30,20 L40,40 L50,10 L60,50 L70,20 L80,35 L90,15 L100,45 L110,25 L120,40 L130,15 L140,50 L150,20 L160,35 L170,15 L180,45 L190,25 L200,40 L210,15 L220,50 L230,20 L240,35 L250,15 L260,45 L270,25 L280,40 L290,15 L300,50 L310,20 L320,35 L330,15 L340,45 L350,25 L360,40 L370,15 L380,50 L390,20 L400,35 L410,15 L420,45 L430,25 L440,40 L450,15 L460,50 L470,20 L480,35 L490,15 L500,45 L510,25 L520,40 L530,15 L540,50 L550,20 L560,35 L570,15 L580,45 L590,25 L600,40 L610,15 L620,50 L630,20 L640,35 L650,15 L660,45 L670,25 L680,40 L690,15 L700,50 L710,20 L720,35 L730,15 L740,45 L750,25 L760,40 L770,15 L780,50 L790,25 L800,30' fill='none' stroke='rgba(0,0,0,0.06)' stroke-width='1.2'/%3E%3Cpath d='M0,85 C10,65 15,105 25,75 C35,100 45,70 55,95 C65,70 75,105 85,80 C95,95 105,65 115,90 C125,75 135,105 145,85 C155,95 165,65 175,90 C185,75 195,105 205,80 C215,95 225,70 235,90 C245,75 255,105 265,85 C275,95 285,65 295,90 C305,75 315,105 325,80 C335,95 345,70 355,90 C365,75 375,105 385,85 C395,95 405,65 415,90 C425,75 435,105 445,80 C455,95 465,70 475,90 C485,75 495,105 505,85 C515,95 525,65 535,90 C545,75 555,105 565,80 C575,95 585,70 595,90 C605,75 615,105 625,85 C635,95 645,65 655,90 C665,75 675,105 685,80 C695,95 705,70 715,90 C725,75 735,105 745,85 C755,95 765,65 775,90 C785,75 795,95 800,85' fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='1.2'/%3E%3Cpath d='M0,140 C20,110 30,170 50,140 C70,110 80,170 100,140 C120,110 130,170 150,140 C170,110 180,170 200,140 C220,110 230,170 250,140 C270,110 280,170 300,140 C320,110 330,170 350,140 C370,110 380,170 400,140 C420,110 430,170 450,140 C470,110 480,170 500,140 C520,110 530,170 550,140 C570,110 580,170 600,140 C620,110 630,170 650,140 C670,110 680,170 700,140 C720,110 730,170 750,140 C770,110 780,170 800,140' fill='none' stroke='rgba(0,0,0,0.07)' stroke-width='1.5'/%3E%3Cpath d='M0,195 C35,160 55,230 90,195 C125,160 145,230 180,195 C215,160 235,230 270,195 C305,160 325,230 360,195 C395,160 415,230 450,195 C485,160 505,230 540,195 C575,160 595,230 630,195 C665,160 685,230 720,195 C755,160 775,230 800,195' fill='none' stroke='rgba(0,0,0,0.045)' stroke-width='1.3'/%3E%3Cpath d='M0,250 C60,210 90,290 150,250 C210,210 240,290 300,250 C360,210 390,290 450,250 C510,210 540,290 600,250 C660,210 690,290 750,250 C780,230 790,265 800,250' fill='none' stroke='rgba(0,0,0,0.035)' stroke-width='1.4'/%3E%3C/svg%3E");
         }
 
         @keyframes scroll-eeg {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-500px); }
+            100% { transform: translateX(-800px); }
         }
 
         /* Minimalist Top-Left Brain Icon (Transparent) */
@@ -193,7 +194,7 @@
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 2px; /* Decreased space between big name and pronunciation */
+            margin-bottom: 2px; 
             font-weight: bold;
             color: var(--hover-color);
             letter-spacing: 1px;
@@ -263,7 +264,7 @@
         }
 
         section {
-            margin-top: 70px; /* Increased space between the top bar and the "about" section */
+            margin-top: 70px; 
             margin-bottom: 80px;
         }
 
@@ -581,11 +582,8 @@
             }, 1000);
         }
 
-        function getNormalSvg(color1, color2, color3) {
-            const path1 = "M0,75 L40,75 L50,30 L65,130 L85,20 L105,110 L120,75 L200,75 L215,50 L235,140 L260,10 L285,120 L300,75 L500,75";
-            const path2 = "M0,40 L120,40 L135,15 L150,75 L165,10 L180,60 L195,40 L350,40 L365,25 L380,85 L400,5 L420,65 L435,40 L500,40";
-            const path3 = "M0,110 L70,110 L80,85 L95,140 L115,75 L130,125 L145,110 L250,110 L260,95 L275,130 L290,80 L305,120 L315,110 L500,110";
-            return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='150' viewBox='0 0 500 150'%3E%3Cpath d='${path1}' fill='none' stroke='${color1}' stroke-width='1.5'/%3E%3Cpath d='${path2}' fill='none' stroke='${color2}' stroke-width='1'/%3E%3Cpath d='${path3}' fill='none' stroke='${color3}' stroke-width='1'/%3E%3C/svg%3E")`;
+        function getMultiBandSvg(c1, c2, c3, c4, c5) {
+            return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='280' viewBox='0 0 800 280'%3E%3Cpath d='M0,30 L10,15 L20,45 L30,20 L40,40 L50,10 L60,50 L70,20 L80,35 L90,15 L100,45 L110,25 L120,40 L130,15 L140,50 L150,20 L160,35 L170,15 L180,45 L190,25 L200,40 L210,15 L220,50 L230,20 L240,35 L250,15 L260,45 L270,25 L280,40 L290,15 L300,50 L310,20 L320,35 L330,15 L340,45 L350,25 L360,40 L370,15 L380,50 L390,20 L400,35 L410,15 L420,45 L430,25 L440,40 L450,15 L460,50 L470,20 L480,35 L490,15 L500,45 L510,25 L520,40 L530,15 L540,50 L550,20 L560,35 L570,15 L580,45 L590,25 L600,40 L610,15 L620,50 L630,20 L640,35 L650,15 L660,45 L670,25 L680,40 L690,15 L700,50 L710,20 L720,35 L730,15 L740,45 L750,25 L760,40 L770,15 L780,50 L790,25 L800,30' fill='none' stroke='${c1}' stroke-width='1.2'/%3E%3Cpath d='M0,85 C10,65 15,105 25,75 C35,100 45,70 55,95 C65,70 75,105 85,80 C95,95 105,65 115,90 C125,75 135,105 145,85 C155,95 165,65 175,90 C185,75 195,105 205,80 C215,95 225,70 235,90 C245,75 255,105 265,85 C275,95 285,65 295,90 C305,75 315,105 325,80 C335,95 345,70 355,90 C365,75 375,105 385,85 C395,95 405,65 415,90 C425,75 435,105 445,80 C455,95 465,70 475,90 C485,75 495,105 505,85 C515,95 525,65 535,90 C545,75 555,105 565,80 C575,95 585,70 595,90 C605,75 615,105 625,85 C635,95 645,65 655,90 C665,75 675,105 685,80 C695,95 705,70 715,90 C725,75 735,105 745,85 C755,95 765,65 775,90 C785,75 795,95 800,85' fill='none' stroke='${c2}' stroke-width='1.2'/%3E%3Cpath d='M0,140 C20,110 30,170 50,140 C70,110 80,170 100,140 C120,110 130,170 150,140 C170,110 180,170 200,140 C220,110 230,170 250,140 C270,110 280,170 300,140 C320,110 330,170 350,140 C370,110 380,170 400,140 C420,110 430,170 450,140 C470,110 480,170 500,140 C520,110 530,170 550,140 C570,110 580,170 600,140 C620,110 630,170 650,140 C670,110 680,170 700,140 C720,110 730,170 750,140 C770,110 780,170 800,140' fill='none' stroke='${c3}' stroke-width='1.5'/%3E%3Cpath d='M0,195 C35,160 55,230 90,195 C125,160 145,230 180,195 C215,160 235,230 270,195 C305,160 325,230 360,195 C395,160 415,230 450,195 C485,160 505,230 540,195 C575,160 595,230 630,195 C665,160 685,230 720,195 C755,160 775,230 800,195' fill='none' stroke='${c4}' stroke-width='1.3'/%3E%3Cpath d='M0,250 C60,210 90,290 150,250 C210,210 240,290 300,250 C360,210 390,290 450,250 C510,210 540,290 600,250 C660,210 690,290 750,250 C780,230 790,265 800,250' fill='none' stroke='${c5}' stroke-width='1.4'/%3E%3C/svg%3E")`;
         }
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -608,11 +606,13 @@
                 document.body.classList.toggle('light-mode');
                 
                 const isLight = document.body.classList.contains('light-mode');
-                const c1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
-                const c2 = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)';
-                const c3 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
+                const c1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.05)';
+                const c2 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.035)';
+                const c3 = isLight ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.06)';
+                const c4 = isLight ? 'rgba(0,0,0,0.045)' : 'rgba(255,255,255,0.04)';
+                const c5 = isLight ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.03)';
                 
-                document.querySelector('.eeg-bg').style.backgroundImage = getNormalSvg(c1, c2, c3);
+                document.querySelector('.eeg-bg').style.backgroundImage = getMultiBandSvg(c1, c2, c3, c4, c5);
             });
         });
 
@@ -806,22 +806,24 @@
             const colorStroke = isLight ? '%238A63C6' : '%234ade80';
             const shadowStrokeColor = isLight ? 'rgba(138, 99, 198, 0.4)' : 'rgba(74, 222, 128, 0.4)';
             
-            const defaultC1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
-            const defaultC2 = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)';
-            const defaultC3 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.04)';
+            const c1 = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.05)';
+            const c2 = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.035)';
+            const c3 = isLight ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.06)';
+            const c4 = isLight ? 'rgba(0,0,0,0.045)' : 'rgba(255,255,255,0.04)';
+            const c5 = isLight ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.03)';
             
             if (link) {
-                eegBg.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Cpath d='M0,75 L10,60 L20,90 L30,50 L40,100 L50,40 L60,110 L70,50 L80,95 L90,55 L100,85 L110,45 L120,105 L130,60 L140,90 L150,50 L160,100 L170,60 L180,85 L190,65 L200,75' fill='none' stroke='${colorStroke}' stroke-width='1.5'/%3E%3C/svg%3E")`;
+                eegBg.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='280' viewBox='0 0 400 280'%3E%3Cpath d='M0,140 C30,110 50,170 80,140 C110,110 130,170 160,140 C190,110 210,170 240,140 C270,110 290,170 320,140 C350,110 370,170 400,140' fill='none' stroke='${colorStroke}' stroke-width='1.5'/%3E%3C/svg%3E")`;
                 eegBg.style.animationDuration = "4s";
                 
                 setTimeout(() => {
-                    eegBg.style.backgroundImage = getNormalSvg(defaultC1, defaultC2, defaultC3);
-                    eegBg.style.animationDuration = "12s";
+                    eegBg.style.backgroundImage = getMultiBandSvg(c1, c2, c3, c4, c5);
+                    eegBg.style.animationDuration = "16s";
                 }, 200);
             } else {
-                eegBg.style.backgroundImage = getNormalSvg(shadowStrokeColor, defaultC2, defaultC3);
+                eegBg.style.backgroundImage = getMultiBandSvg(shadowStrokeColor, shadowStrokeColor, shadowStrokeColor, shadowStrokeColor, shadowStrokeColor);
                 setTimeout(() => {
-                    eegBg.style.backgroundImage = getNormalSvg(defaultC1, defaultC2, defaultC3);
+                    eegBg.style.backgroundImage = getMultiBandSvg(c1, c2, c3, c4, c5);
                 }, 150);
             }
         });
